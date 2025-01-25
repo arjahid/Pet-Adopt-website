@@ -13,6 +13,19 @@ const buttonData = () => {
     console.log("Error occured here")
   })
 }
+//&specfic video data
+const specficVideo=(id)=>{
+    alert(id)
+    fetch('https://openapi.programming-hero.com/api/peddy/category/dog')
+    .then(res =>res.json())
+    .then(data=>console.log(data.petId
+    ))
+    .catch((err)=>{
+        console.log('error occured here')
+    })
+    
+}
+
 // &getting video data
 const videoData=()=>{
     fetch('https://openapi.programming-hero.com/api/peddy/pets')
@@ -32,7 +45,7 @@ const showVideoData=(data)=>{
     card.classList.add('card')
     card.innerHTML=`
 
-   <div class="border rounded-lg gap-2">
+   <div class="border rounded-lg gap-2 ">
     <figure class="px-10 pt-10 ">
     <img
       src=${vid.image}
@@ -40,14 +53,19 @@ const showVideoData=(data)=>{
       class="rounded-xl object-cover w-full" />
   </figure>
   <div class="card-body items-center text-center">
-   <h2>${vid.pet_name
+   <h2 class="font-bold">${vid.pet_name
    }</h2>
-   <h2>Bread:${vid.breed}</h2>
-   <h2>Birth:${vid.date_of_birth}</h2>
-   <h2>Gender:${vid.gender}</h2>
-   <h1>Price:${vid.price}</h1>
+   <h2 class="text-emerald-70">Bread: ${vid.breed}</h2>
+   <h2>Birth: ${vid.date_of_birth}</h2>
+   <h2>Gender: ${vid.gender}</h2>
+   <h1>Price: ${vid.price}</h1>
   </div>
-    
+  <div class="justify-evenly flex py-3 ">
+   
+   <button class="btn"><img class="w-9 h-9 border-10" src="/like.png" alt="" /></button>
+   <button class="btn">Adopt</button>
+   <button class="btn">Details</button>
+   
    </div>
     `
     videoContainer.append(card)
@@ -66,13 +84,11 @@ const viewData=(data)=>{
         btn.innerHTML=`
         <div class="flex gap-2">
           <p><img class="w-7 h-7 " src="${item.category_icon}" alt="" /></p>
-          <button>${item.category}</button>
+          <button onclick="specficVideo(${item.id})" >${item.category}</button>
+          
         </div>
-        
-        
-        
-        
         `
+       
         button.appendChild(btn)
 
     }
